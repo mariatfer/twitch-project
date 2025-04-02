@@ -1,0 +1,30 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "plugins": ["stylelint-scss"],
+  "overrides": [
+    {
+      "files": ["*.vue", "**/*.vue", "*.scss", "**/*.scss", "*.css", "**/*.css"],
+      "rules": {
+        "unit-allowed-list": [
+          "em",
+          "rem",
+          "vh",
+          "vw",
+          "%",
+          "s",
+          "deg",
+          "fr",
+          "pt",
+          "ch",
+          "ms",
+          "dvh",
+          "dvw"
+        ],
+        "at-rule-no-unknown": null,
+        "rule-empty-line-before": null,
+        "font-family-no-missing-generic-family-keyword": null,
+        "declaration-no-important": true
+      }
+    }
+  ]
+}
