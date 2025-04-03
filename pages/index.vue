@@ -5,11 +5,8 @@
 <template>
     <div>
         <TheHeader />
-        <h2>home</h2>
+        <main>
+            <TheAside/>
+        </main>
     </div>
 </template>
-
-<style lang="scss" scoped>
-
-</style>
-    
