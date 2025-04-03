@@ -41,7 +41,7 @@ const notificationButton = {
 
   &__notification {
     position: relative;
-    display: flex;
+    @include flex(row);
     transition: all 0.2s ease-in-out;
 
     &--badge {
