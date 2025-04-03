@@ -1,9 +1,13 @@
 {
-  "extends": ["stylelint-config-standard"],
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-recommended-vue"
+  ],
   "plugins": ["stylelint-scss"],
   "overrides": [
     {
       "files": ["*.vue", "**/*.vue", "*.scss", "**/*.scss", "*.css", "**/*.css"],
+      "customSyntax": "postcss-html",
       "rules": {
         "unit-allowed-list": [
           "em",

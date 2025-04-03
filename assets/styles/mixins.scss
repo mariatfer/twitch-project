@@ -1,0 +1,7 @@
+@mixin flex ($direction: row, $justify: center, $align: center, $wrap: nowrap, $gap: 0, $grow: initial){
+    display: flex;
+    flex-flow: $direction $wrap;
+    place-content: $align $justify;
+    gap: $gap;
+    flex-grow: $grow;
+}
