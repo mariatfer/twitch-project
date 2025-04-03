@@ -52,6 +52,8 @@ const searchButton = {
   &__button {
     border: 0.0625rem solid rgb(83 83 95 / 38%);
     transition: all 0.2s ease-in-out;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
     &:hover {
       border: 0.0625rem solid #189afc;
     }
