@@ -1,6 +1,27 @@
 <script setup lang="ts">
 import UserIcon from '@/components/icons/UserIcon.vue'
 import NotificationIcon from '@/components/icons/NotificationIcon.vue'
+import { ref, onMounted } from 'vue'
+import { TwitchAPI } from '@/utils/TwitchAPI'
+
+const twitchApi = new TwitchAPI()
+const authUrl = ref<string>('')
+
+onMounted(async () => {
+  try {
+    authUrl.value = await twitchApi.getAuthorizationUrl()
+  } catch (error) {
+    console.error('Error obtaining Twitch authorization URL:', error)
+  }
+})
+
+function redirectToAuthUrl() {
+  if (authUrl.value) {
+    window.location.href = authUrl.value; // Redirige al usuario a la URL de autorización
+  } else {
+    console.error('Authorization URL is not available.');
+  }
+}
 
 const primaryButton = {
   background: '#189AFC',
@@ -19,6 +40,7 @@ const notificationButton = {
   display: 'flex',
   alignSelf: 'flex-end'
 }
+
 </script>
 
 <template>
@@ -27,7 +49,7 @@ const notificationButton = {
       <span class="buttons__notification--badge">63</span>
       <TheButton :style="notificationButton"><NotificationIcon /></TheButton>
     </div>
-    <TheButton :style="secundaryButton" class="buttons--translate">Log In</TheButton>
+    <TheButton :style="secundaryButton" class="buttons--translate" @click="redirectToAuthUrl">Log In</TheButton>
     <TheButton :style="primaryButton" class="buttons--translate">Sign Up</TheButton>
     <TheButton :style="iconButton" class="buttons--translate"><UserIcon /></TheButton>
   </section>
