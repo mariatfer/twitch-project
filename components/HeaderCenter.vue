@@ -28,7 +28,7 @@ const searchButton = {
   @include flex(row, flex-start, center, wrap, 0);
 
   &__input {
-    border: 0.0625rem solid rgb(255 255 255 / 70%);
+    border: 0.0625rem solid #5d5d61;
     border-top-left-radius: 0.3125rem;
     border-bottom-left-radius: 0.3125rem;
     padding: 0.65rem;
@@ -50,7 +50,7 @@ const searchButton = {
     }
   }
   &__button {
-    border: 0.0625rem solid rgb(83 83 95 / 38%);
+    border: 0.0625rem solid #2f2f35;
     transition: all 0.2s ease-in-out;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;

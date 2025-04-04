@@ -9,9 +9,9 @@ const iconButton = {
 
 <template>
   <section class="home">
-    <NuxtLink to="/" class="home__title">
+    <NuxtLink to="/" class="home__logo">
       <img src="/assets/midutch-logo.svg" alt="Midutch logo" width="28" height="28" >
-      <h1>MIDUTCH</h1>
+      <h1 class="home__logo--title">MIDUTCH</h1>
     </NuxtLink>
     <TheButton :style="iconButton" class="home__button--scale"><MoreIcon /></TheButton>
   </section>
@@ -22,16 +22,17 @@ const iconButton = {
 
 .home {
   @include flex(row, flex-start, center, wrap, 0.5em);
-  &__title {
+  &__logo {
     @include flex(row, space-between, center, wrap, 0.5em);
-
-    display: flex;
-    align-items: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 0.8125rem;
-    transition: all 0.2s ease-in-out;
+    font-weight: 500;
     &:hover {
       transform: translateY(-0.1rem);
+      transition: transform 0.4s ease-in-out;
+    }
+    &:hover .home__logo--title {
+      color: #189AFC;
+      transition: color 0.3s ease-in-out;
     }
   }
   &__button--scale:hover {
