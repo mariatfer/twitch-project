@@ -58,15 +58,14 @@ fetchLiveStreams()
 @use '/assets/styles/mixins.scss' as *;
 .container {
   @include flex(column);
-  width: 100vw;
 
   &__main {
-    @include flex(row, flex-start, flex-start, wrap, 0.625rem);
+    @include flex(row, flex-start, flex-start, nowrap, 0.625rem);
+    width: 100%;
   }
 }
 .main__content {
-  @include flex(column, flex-start, flex-start, wrap, 1.25rem);
-  width: max-content;
-  // calc(100% - 16.8738rem)             
+  @include flex(column, flex-start, center, wrap, 1.25rem);
+  width: 100%;     
 }
 </style>
