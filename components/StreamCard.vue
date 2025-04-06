@@ -31,7 +31,6 @@ defineProps<Stream>()
   flex-direction: column;
   justify-content: flex-start;
   gap: 0.625rem;
-  flex-basis: calc(33.3333% - 0.625rem);
   box-sizing: border-box;
   border-radius: 0.3125rem;
   color: #dbdbdb;

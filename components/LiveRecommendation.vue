@@ -7,23 +7,28 @@ import getToken from '@/utils/TwitchAuth'
 
 const twitchApi = new TwitchAPI()
 const streams = ref<Stream[]>([])
+const isExpanded = ref(false)
 
 async function fetchLiveStreams() {
   try {
     const accessToken = await getToken()
     const response: ApiResponse<Stream> = await twitchApi.getLiveStreams(
       accessToken.access_token,
-      12,
+      8,
     )
     streams.value = response.data.map((stream) => ({
       ...stream,
       thumbnail_url: stream.thumbnail_url
-        .replace('{width}', '1920')
-        .replace('{height}', '1080'),
+        .replace('{width}', '686')
+        .replace('{height}', '386'),
     }))
   } catch (error) {
     throw new FetchError('Error fetching live streams: ' + error)
   }
+}
+
+function toggleExpand() {
+  isExpanded.value = !isExpanded.value
 }
 
 onMounted(() => {
@@ -37,7 +42,10 @@ onMounted(() => {
       <span class="live-recommendation__title--blue">Live channels</span>&nbsp;we think
       you'll like
     </h2>
-    <div class="live-recommendation__content">
+    <div
+      class="live-recommendation__content"
+      :class="{ 'live-recommendation__content--expanded': isExpanded }"
+    >
       <StreamCard
         v-for="stream in streams"
         :id="stream.id"
@@ -56,6 +64,7 @@ onMounted(() => {
         :language="stream.language"
       />
     </div>
+    <ShowMore :is-expanded="isExpanded" @toggle-expand="toggleExpand" />
   </article>
 </template>
 
@@ -76,10 +85,17 @@ onMounted(() => {
     grid-template-columns: repeat(auto-fill, minmax(20.3125rem, 1fr));
     gap: 2.3125rem;
     width: 100%;
-    border-radius: 0.3125rem;
+    height: 19.875rem;
     color: #dbdbdb;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
+    overflow: hidden;
+    @media screen and (max-width: 1000px) {
+      grid-template-columns: repeat(auto-fill, minmax(20.3125rem, 23.875rem));
+    }
+    &--expanded {
+      height: auto;
+    }
   }
   @media screen and (min-width: 1920px) {
     max-width: 95.5rem;

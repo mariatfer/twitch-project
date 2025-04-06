@@ -4,10 +4,11 @@ const props = defineProps({
   display: {type: String, default: 'inline-block'},
   alignSelf: {type: String, default: 'auto'}
 })
+defineEmits(['click']);
 </script>
 
 <template>
-  <button type="button" class="button" :style="props"><slot/></button>
+  <button type="button" class="button" :style="props" @click="$emit('click')"><slot/></button>
 </template>
 
 <style lang="scss" scoped>
