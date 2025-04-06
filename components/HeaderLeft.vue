@@ -31,8 +31,14 @@ const iconButton = {
       transition: transform 0.4s ease-in-out;
     }
     &:hover .home__logo--title {
-      color: #189AFC;
+      color: #189afc;
       transition: color 0.3s ease-in-out;
+    }
+    &--title {
+      @include flex(row, center, center, wrap, 0.5em);
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
   }
   &__button--scale:hover {
