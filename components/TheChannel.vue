@@ -1,15 +1,28 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { Stream } from '@/types/types';
+
+defineProps<Stream>()
+
+function formatViewerCount(count: number): string {
+  if (count >= 1000000) {
+    return (count / 1000000).toFixed(1) + 'M';
+  } else if (count >= 1000) {
+    return (count / 1000).toFixed(1) + 'K';
+  }
+  return count.toString();
+}
+</script>
 
 <template>
   <NuxtLink to="/" class="channel">
-    <img src="/assets/midutch-logo.svg" alt="" class="channel__logo">
+    <img :src="$props.profile_image_url" alt="Channel image" class="channel__logo" >
     <section class="channel__info">
-      <h3 class="channel__info--title">Miduncy</h3>
-      <p class="channel__info--description">Coding Live</p>
+      <h3 class="channel__info--title">{{ $props.user_name }}</h3>
+      <p class="channel__info--description">{{ $props.game_name }}</p>
     </section>
     <div class="channel__live">
       <div class="channel__live--point" />
-      <span class="channel__live--followers">2.3K</span>
+      <span class="channel__live--followers">{{ formatViewerCount($props.viewer_count) }}</span>
     </div>
   </NuxtLink>
 </template>
@@ -17,14 +30,14 @@
 <style lang="scss" scoped>
 @use '/assets/styles/mixins.scss' as *;
 .channel {
-    @include flex(row, space-between, center);
+  @include flex(row, space-between, center);
   padding: 0.3125rem 0.625rem;
   &:hover {
     background-color: #1e1e1e;
     transition: all 0.2s ease-in-out;
     & .channel__info--title {
-        color: #189AFC;
-        transition: all 0.3s ease-in-out;
+      color: #189afc;
+      transition: all 0.2s ease-in-out;
     }
   }
   &__logo {
@@ -37,7 +50,7 @@
     @include flex(column);
     width: 8.75rem;
     &--title {
-      font-size: .875rem;
+      font-size: 0.875rem;
       font-weight: 500;
       color: #fff;
     }
@@ -51,7 +64,8 @@
     justify-content: space-between;
     align-items: center;
     align-self: flex-start;
-    width: 2.5rem;
+    gap: .125rem;
+    width: 2.6875rem;
     &--point {
       width: 0.5rem;
       height: 0.5rem;
@@ -59,8 +73,11 @@
       border-radius: 50%;
     }
     &--followers {
-      font-size: 0.8125rem;
+      font-size: .7813rem;
     }
+  }
+  .aside--collapsed &__info, .aside--collapsed &__live {
+    display: none;
   }
 }
 </style>
