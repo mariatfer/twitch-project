@@ -1,16 +1,8 @@
 <script setup lang="ts">
-import type { Stream } from '@/types/types';
+import type { Stream } from '@/types/types'
+import { formatViewerCount } from '~/utils/formatters'
 
 defineProps<Stream>()
-
-function formatViewerCount(count: number): string {
-  if (count >= 1000000) {
-    return (count / 1000000).toFixed(1) + 'M';
-  } else if (count >= 1000) {
-    return (count / 1000).toFixed(1) + 'K';
-  }
-  return count.toString();
-}
 </script>
 
 <template>
@@ -22,7 +14,9 @@ function formatViewerCount(count: number): string {
     </section>
     <div class="channel__live">
       <div class="channel__live--point" />
-      <span class="channel__live--followers">{{ formatViewerCount($props.viewer_count) }}</span>
+      <span class="channel__live--followers">{{
+        formatViewerCount($props.viewer_count)
+      }}</span>
     </div>
   </NuxtLink>
 </template>
@@ -64,7 +58,7 @@ function formatViewerCount(count: number): string {
     justify-content: space-between;
     align-items: center;
     align-self: flex-start;
-    gap: .125rem;
+    gap: 0.125rem;
     width: 2.6875rem;
     &--point {
       width: 0.5rem;
@@ -73,10 +67,11 @@ function formatViewerCount(count: number): string {
       border-radius: 50%;
     }
     &--followers {
-      font-size: .7813rem;
+      font-size: 0.7813rem;
     }
   }
-  .aside--collapsed &__info, .aside--collapsed &__live {
+  .aside--collapsed &__info,
+  .aside--collapsed &__live {
     display: none;
   }
 }

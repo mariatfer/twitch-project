@@ -1,5 +1,6 @@
 import FetchError from '@/utils/FetchError'
-import type { Stream, TokenResponse, UserData, ApiResponse } from '@/types/types'
+import { tags } from '@/mocks/tags' // Asegúrate de que la ruta sea correcta
+import type { Stream, TokenResponse, UserData, ApiResponse, Category, Tag } from '@/types/types'
 
 export class TwitchAPI {
   private clientId: string
@@ -134,7 +135,80 @@ export class TwitchAPI {
     }
   }
   
-    
+  public async getCategoriesWithViewersAndTags(
+    accessToken: string,
+    limit: number = 7,
+  ): Promise<Category[]> {
+    const url = `https://api.twitch.tv/helix/games/top?first=${limit}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Client-ID': this.clientId,
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+  
+    const response = await fetch(url, options);
+  
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error fetching categories:', errorData);
+      throw new Error('Error fetching categories');
+    }
+  
+    const data: ApiResponse<Category> = await response.json();
+  
+    // Realiza solicitudes adicionales para obtener los viewers de cada categoría
+    const categoriesWithDetails = await Promise.all(
+      data.data.map(async (category) => {
+        const viewerCount = await this.getViewerCountForCategory(category.id, accessToken);
+        const randomTags = this.getRandomTags();
+  
+        return {
+          ...category,
+          box_art_url: category.box_art_url
+            .replace('{width}', '285')
+            .replace('{height}', '380'),
+          viewer_count: viewerCount,
+          tags: randomTags,
+        };
+      }),
+    );
+  
+    console.log('Categorías con detalles:', categoriesWithDetails);
+    return categoriesWithDetails;
+  }
+  
+  private async getViewerCountForCategory(categoryId: string, accessToken: string): Promise<number> {
+    const url = `https://api.twitch.tv/helix/streams?game_id=${categoryId}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Client-ID': this.clientId,
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+  
+    const response = await fetch(url, options);
+  
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error fetching streams for category:', errorData);
+      return 0;
+    }
+  
+    const data = await response.json();
+  
+    // Suma el número de viewers de todos los streams de la categoría
+    return data.data.reduce((total: number, stream: Stream) => total + stream.viewer_count, 0);
+  }
+
+  private getRandomTags(): Tag[] {
+
+    const shuffledTags = [...tags].sort(() => 0.5 - Math.random());
+    return shuffledTags.slice(0, 2);
+  }
+
   private generateState(): string {
     return Math.random().toString(36).substring(7)
   }

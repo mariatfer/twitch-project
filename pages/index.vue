@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { TwitchAPI } from '@/utils/TwitchAPI'
 import getToken from '@/utils/TwitchAuth'
+import TopCategories from '@/components/TopCategories.vue'
 
 const twitchApi = new TwitchAPI()
 
@@ -49,6 +50,7 @@ fetchLiveStreams()
       <TheAside />
       <div class="main__content">
         <LiveRecommendation />
+        <TopCategories />
       </div>
     </main>
   </div>

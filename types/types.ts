@@ -41,6 +41,7 @@ export interface Stream {
 
 export interface Tag {
   tag_id: string
+  tag_name: string
 }
 
 export interface Channel {
@@ -66,4 +67,13 @@ export interface ApiResponse<T> {
 
 export interface Pagination {
   cursor: string
+}
+
+export interface Category {
+  id: string
+  name: string
+  box_art_url: string
+  viewer_count: number
+  tag_ids: string[]
+  tags: Tag[]
 }
