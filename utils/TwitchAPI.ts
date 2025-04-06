@@ -81,7 +81,7 @@ export class TwitchAPI {
     limit: number = 12,
   ): Promise<ApiResponse<Stream>> {
     const url = `https://api.twitch.tv/helix/streams?first=${limit}&language=es`
-    
+
     const options = {
       method: 'GET',
       headers: {
@@ -99,9 +99,42 @@ export class TwitchAPI {
     }
 
     const data: ApiResponse<Stream> = await response.json()
-    return data
-  }
 
+    const streamsWithProfileImages = await Promise.all(
+      data.data.map(async (stream) => {
+        const userUrl = `https://api.twitch.tv/helix/users?id=${stream.user_id}`
+        const userResponse = await fetch(userUrl, {
+          method: 'GET',
+          headers: {
+            'Client-ID': this.clientId,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+
+        if (!userResponse.ok) {
+          const userError = await userResponse.json()
+          console.error('Error obtaining user data:', userError)
+          throw new FetchError('Error obtaining user data')
+        }
+
+        const userData = await userResponse.json()
+
+        const profileImageUrl = userData.data[0].profile_image_url
+
+        return {
+          ...stream,
+          profile_image_url: profileImageUrl,
+        }
+      }),
+    )
+
+    return {
+      ...data,
+      data: streamsWithProfileImages,
+    }
+  }
+  
+    
   private generateState(): string {
     return Math.random().toString(36).substring(7)
   }

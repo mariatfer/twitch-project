@@ -14,10 +14,10 @@ const searchButton = {
       name="search"
       class="search__input"
       placeholder="Search"
+      aria-label="Search"
+      aria-describedby="search"
     >
-    <TheButton :style="searchButton" class="search__button"
-      ><SearchIcon
-    /></TheButton>
+    <TheButton :style="searchButton" class="search__button"><SearchIcon /></TheButton>
   </section>
 </template>
 
@@ -25,14 +25,16 @@ const searchButton = {
 @use '/assets/styles/mixins.scss' as *;
 
 .search {
-  @include flex(row, flex-start, center, wrap, 0);
-
+  @include flex(row, center, center, wrap, 0);
+  width: 100%;
+  max-width: 30em;
   &__input {
     border: 0.0625rem solid #5d5d61;
     border-top-left-radius: 0.3125rem;
     border-bottom-left-radius: 0.3125rem;
     padding: 0.65rem;
-    width: 24.375rem;
+    flex-grow: 1;
+    min-width: 8rem;
     background: transparent;
     transition: all 0.2s ease-in-out;
     &:focus {
@@ -48,15 +50,28 @@ const searchButton = {
     &:hover::placeholder {
       color: #dbdbdb;
     }
-  }
-  &__button {
-    border: 0.0625rem solid #2f2f35;
-    transition: all 0.2s ease-in-out;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    &:hover {
-      border: 0.0625rem solid #189afc;
+
+    @media screen and (max-width: 600px) {
+      flex-grow: 0;
+      min-width: 4.8rem;
+      max-width: 5rem;
     }
+    &__button {
+      padding: 0;
+      border: 0.0625rem solid #2f2f35;
+      transition: all 0.2s ease-in-out;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      max-width: 2.125rem;
+      width: 2.125rem;
+      &:hover {
+        border: 0.0625rem solid #189afc;
+      }
+    }
+  }
+  @media screen and (max-width: 968px) {
+    display: inline-flex;
+    width: auto;
   }
 }
 </style>

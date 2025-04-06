@@ -1,28 +1,88 @@
 <script setup lang="ts">
-import VerfiedIcon from '@/components/icons/VerifiedIcon.vue'
+import { ref, onMounted } from 'vue'
+import StreamCard from '@/components/StreamCard.vue'
+import type { Stream, ApiResponse } from '@/types/types'
+import { TwitchAPI } from '@/utils/TwitchAPI'
+import getToken from '@/utils/TwitchAuth'
+
+const twitchApi = new TwitchAPI()
+const streams = ref<Stream[]>([])
+
+async function fetchLiveStreams() {
+  try {
+    const accessToken = await getToken()
+    const response: ApiResponse<Stream> = await twitchApi.getLiveStreams(
+      accessToken.access_token,
+      12,
+    )
+    streams.value = response.data.map((stream) => ({
+      ...stream,
+      thumbnail_url: stream.thumbnail_url
+        .replace('{width}', '1920')
+        .replace('{height}', '1080'),
+    }))
+  } catch (error) {
+    throw new FetchError('Error fetching live streams: ' + error)
+  }
+}
+
+onMounted(() => {
+  fetchLiveStreams()
+})
 </script>
 
 <template>
   <article class="live-recommendation">
     <h2 class="live-recommendation__title">
-      <span>Live channels</span> we think you'll like
+      <span class="live-recommendation__title--blue">Live channels</span>&nbsp;we think
+      you'll like
     </h2>
-    <NuxtLink to="/">
-      <img src="" alt="" >
-      <section>
-        <img src="" alt="" >
-        <div>
-          <h3>Miduncy</h3>
-          <h4>Miduuxeneize<VerfiedIcon /></h4>
-          <p>Coding Live</p>
-        </div>
-      </section>
-    </NuxtLink>
+    <div class="live-recommendation__content">
+      <StreamCard
+        v-for="stream in streams"
+        :id="stream.id"
+        :key="stream.id"
+        :user_id="stream.user_id"
+        :user_name="stream.user_name"
+        :game_id="stream.game_id"
+        :game_name="stream.game_name"
+        :title="stream.title"
+        :viewer_count="stream.viewer_count"
+        :thumbnail_url="stream.thumbnail_url"
+        :profile_image_url="stream.profile_image_url"
+        :tag_ids="stream.tag_ids || []"
+        :tags="stream.tags || []"
+        :started_at="stream.started_at"
+        :language="stream.language"
+      />
+    </div>
   </article>
 </template>
 
 <style lang="scss" scoped>
-// .live-recommendation {
-
-// }
+.live-recommendation {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.625rem;
+  &__title {
+    color: #dbdbdb;
+    &--blue {
+      color: #189afc;
+    }
+  }
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20.3125rem, 1fr));
+    gap: 2.3125rem;
+    width: 100%;
+    border-radius: 0.3125rem;
+    color: #dbdbdb;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+  }
+  @media screen and (min-width: 1920px) {
+    max-width: 95.5rem;
+  }
+}
 </style>

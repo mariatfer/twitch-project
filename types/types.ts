@@ -34,14 +34,13 @@ export interface Stream {
   started_at: string
   language: string
   thumbnail_url: string
+  profile_image_url: string
   tag_ids: string[]
+  tags: Tag[]
 }
 
 export interface Tag {
   tag_id: string
-  is_auto: boolean
-  localization_names: { [key: string]: string }
-  localization_descriptions: { [key: string]: string }
 }
 
 export interface Channel {
