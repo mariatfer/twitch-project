@@ -1,18 +1,8 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import { TwitchAPI } from '@/utils/TwitchAPI'
 import getToken from '@/utils/TwitchAuth'
 
 const twitchApi = new TwitchAPI()
-const authUrl = ref<string>('')
-
-onMounted(async () => {
-  try {
-    authUrl.value = await twitchApi.getAuthorizationUrl()
-  } catch (error) {
-    console.error('Error obtaining Twitch authorization URL:', error)
-  }
-})
 
 async function handleTwitchCallback() {
   const queryParams = new URLSearchParams(window.location.search)
@@ -33,6 +23,12 @@ async function handleTwitchCallback() {
   }
 }
 
+onMounted(() => {
+  if (window.location.search.includes('code=')) {
+    handleTwitchCallback()
+  }
+})
+
 async function fetchLiveStreams() {
   try {
     const accessToken = await getToken()
@@ -43,12 +39,7 @@ async function fetchLiveStreams() {
   }
 }
 
-onMounted(() => {
-  if (window.location.search.includes('code=')) {
-    handleTwitchCallback()
-    fetchLiveStreams()
-  }
-})
+fetchLiveStreams()
 </script>
 
 <template>
@@ -67,14 +58,14 @@ onMounted(() => {
 @use '/assets/styles/mixins.scss' as *;
 .container {
   @include flex(column);
-  width: 100vw;
 
   &__main {
-    @include flex(row, flex-start, flex-start, wrap, 0.625rem);
+    @include flex(row, flex-start, flex-start, nowrap, 0.625rem);
+    width: 100%;
   }
 }
 .main__content {
-  @include flex(column, flex-start, flex-start, wrap, 1.25rem);
-  width: calc(100% - 16.8738rem);
+  @include flex(column, flex-start, center, wrap, 1.25rem);
+  width: 100%;     
 }
 </style>

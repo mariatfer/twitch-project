@@ -27,7 +27,7 @@ export default async function getToken(): Promise<TokenResponse> {
     }
 
     const data = await response.json()
-    console.log('Token de cliente obtenido:', data.accessToken)
+    // console.log('Token de cliente obtenido:', data.accessToken)
     return data
   } catch (error) {
     throw new FetchError('Failed to fetch Twitch token:'+ error)
