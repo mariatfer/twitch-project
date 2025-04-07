@@ -18,11 +18,30 @@ async function fetchCategories() {
     categories.value = results
     await nextTick()
     hideElementsInSecondRow('.top-categories__content', 'category-card')
+
   } catch (error) {
     console.error('Error fetching categories:', error)
   }
 }
+function hideCardsInSecondRow() {
+  const container = document.querySelector('.top-categories__content')
+  if (!container) return
 
+  const cards = container.querySelectorAll('.category-card') as NodeListOf<HTMLElement>
+  if (!cards.length) return
+
+  cards.forEach((card) => {
+    card.style.display = ''
+  })
+
+  const firstCardTop = (cards[0] as HTMLElement).offsetTop
+
+  cards.forEach((card) => {
+    if ((card as HTMLElement).offsetTop !== firstCardTop) {
+      ;(card as HTMLElement).style.display = 'none'
+    }
+  })
+}
 onMounted(() => {
   fetchCategories();
   window.addEventListener('resize', () =>
@@ -71,13 +90,11 @@ onUnmounted(() => {
   &__content {
     @include flex(row, flex-start, flex-start, wrap, 1.9rem);
     width: 100%;
+    height: 21rem;
     color: #dbdbdb;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
 
-    @media screen and (max-width: 1000px) {
-      justify-self: flex-start;
-    }
     @media screen and (max-width: 492px) {
       overflow: hidden;
       height: 13rem;
