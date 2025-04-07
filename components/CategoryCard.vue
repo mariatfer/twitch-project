@@ -26,6 +26,7 @@ defineProps<Category>()
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 0.3125rem;
   box-sizing: border-box;
   border-radius: 0.3125rem;
   color: #dbdbdb;

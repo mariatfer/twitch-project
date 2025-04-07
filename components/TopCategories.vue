@@ -15,14 +15,39 @@ async function fetchCategories() {
       7,
     )
     categories.value = results
+    await nextTick()
+    hideCardsInSecondRow()
   } catch (error) {
     console.error('Error fetching categories:', error)
   }
 }
+function hideCardsInSecondRow() {
+  const container = document.querySelector('.top-categories__content')
+  if (!container) return
 
+  const cards = container.querySelectorAll('.category-card') as NodeListOf<HTMLElement>
+  if (!cards.length) return
+
+  cards.forEach((card) => {
+    card.style.display = ''
+  })
+
+  const firstCardTop = (cards[0] as HTMLElement).offsetTop
+
+  cards.forEach((card) => {
+    if ((card as HTMLElement).offsetTop !== firstCardTop) {
+      ;(card as HTMLElement).style.display = 'none'
+    }
+  })
+}
 onMounted(() => {
   fetchCategories()
+  window.addEventListener('resize', hideCardsInSecondRow);
 })
+
+onUnmounted(() => {
+  window.removeEventListener('resize', hideCardsInSecondRow);
+});
 </script>
 
 <template>
@@ -64,16 +89,14 @@ onMounted(() => {
     flex-wrap: wrap;
     gap: 1.9rem;
     width: 100%;
+    height: 21rem;
     color: #dbdbdb;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
-    
-    @media screen and (max-width: 1000px) {
+    overflow: hidden;
+    @media screen and (max-width: 1024px) {
       justify-self: flex-start;
-    }
-    @media screen and (max-width: 492px) {
-      overflow: hidden;
-      height: 13rem;
+      height: auto;
     }
   }
   @media screen and (min-width: 1920px) {
