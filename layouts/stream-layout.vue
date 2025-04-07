@@ -54,7 +54,7 @@ onMounted(() => {
   &__main {
     @include flex(row, flex-start, flex-start, nowrap, 0.625rem);
     width: 100%;
-    padding: 1.25rem;
+    padding-left: 1.25rem;
   }
 }
 </style>

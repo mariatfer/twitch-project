@@ -1,28 +1,6 @@
 <script setup lang="ts">
-import { TwitchAPI } from '@/utils/TwitchAPI'
 import { categoryLabels } from '@/mocks/categoryLabels'
 import { hideElementsInSecondRow } from '@/utils/domUtils'
-
-const twitchApi = new TwitchAPI()
-
-async function handleTwitchCallback() {
-  const queryParams = new URLSearchParams(window.location.search)
-  const code = queryParams.get('code')
-
-  if (code) {
-    try {
-      const tokenResponse = await twitchApi.exchangeCodeForToken(code)
-      console.log('Access Token:', tokenResponse)
-
-      const users = await twitchApi.getUserData(tokenResponse.access_token)
-      console.log('Users:', users)
-    } catch (error) {
-      console.error('Error handling Twitch callback:', error)
-    }
-  } else {
-    console.error('The authorization code was not found in the URL.')
-  }
-}
 
 const buttonStyle = {
   display: 'flex',
@@ -35,9 +13,6 @@ const buttonStyle = {
 }
 
 onMounted(() => {
-  if (window.location.search.includes('code=')) {
-    handleTwitchCallback()
-  }
   nextTick(() => {
     hideElementsInSecondRow('.main__content--align', 'category-button')
   })
