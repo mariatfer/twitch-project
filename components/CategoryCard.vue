@@ -14,9 +14,9 @@ defineProps<Category>()
       {{ formatViewerCount($props.viewer_count) }} viewers
     </p>
     <ul class="category-card__list">
-      <li v-for="tag in tags.slice(0, 2)" :key="tag.tag_id" class="list__item">
+      <TheTag v-for="tag in tags.slice(0, 2)" :key="tag.tag_id" class="list__item">
         {{ tag.tag_name }}
-      </li>
+      </TheTag>
     </ul>
   </NuxtLink>
 </template>
@@ -72,21 +72,7 @@ defineProps<Category>()
   &__list {
     @include flex(row, flex-start, center, nowrap, 0.625rem);
     margin-top: 0.125rem;
-
     .list__item {
-      padding: 0.1875rem 0.4375rem;
-      border-radius: 0.9375rem;
-      background-color: #2f2f35;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #adadb8;
-      text-decoration: none;
-      transition: all 0.2s ease-in-out;
-      &:hover {
-        background-color: #189afc;
-        transition: all 0.2s ease-in-out;
-        color: #fff;
-      }
       @media screen and (max-width: 768px) {
         &:nth-child(2) {
           visibility: hidden;
