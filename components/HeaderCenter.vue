@@ -22,7 +22,6 @@ const searchButton = {
 </template>
 
 <style lang="scss" scoped>
-@use '/assets/styles/mixins.scss' as *;
 
 .search {
   @include flex(row, center, center, wrap, 0);

@@ -31,12 +31,10 @@ const ShowButton = {
 </template>
 
 <style scoped lang="scss">
+
 .show-more {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex(row, center, center, nowrap, 0.625rem);
   width: 100%;
-  gap: 0.625rem;
   &__line {
     width: calc(50% - 3.95rem);
     height: 0.0625rem;

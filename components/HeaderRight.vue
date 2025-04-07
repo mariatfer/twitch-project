@@ -56,7 +56,7 @@ const notificationButton = {
 </template>
 
 <style lang="scss" scoped>
-@use '/assets/styles/mixins.scss' as *;
+
 
 .buttons {
   @include flex(row, space-between, center, wrap, 0.5em);

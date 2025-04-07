@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Category } from '@/types/types'
-import { formatViewerCount } from '~/utils/formatters'
+import { formatViewerCount } from '@/utils/formatters'
 defineProps<Category>()
 </script>
 
@@ -22,10 +22,10 @@ defineProps<Category>()
 </template>
 
 <style scoped lang="scss">
+
+
 .category-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @include flex(column, space-between);
   box-sizing: border-box;
   border-radius: 0.3125rem;
   color: #dbdbdb;
@@ -60,10 +60,8 @@ defineProps<Category>()
     }
   }
   &__viewers--color {
+    @include flex(row, flex-start, center, nowrap, 0.125rem);
     color: #a6a6b1;
-    display: flex;
-    align-items: center;
-    gap: 0.125rem;
     font-size: 0.8125rem;
     font-weight: 500;
     text-overflow: ellipsis;
@@ -72,8 +70,7 @@ defineProps<Category>()
   }
 
   &__list {
-    display: flex;
-    gap: 0.625rem;
+    @include flex(row, flex-start, center, nowrap, 0.625rem);
     margin-top: 0.125rem;
 
     .list__item {

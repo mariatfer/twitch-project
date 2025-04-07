@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Stream } from '@/types/types'
-import { formatViewerCount } from '~/utils/formatters'
+import { formatViewerCount } from '@/utils/formatters'
 
 defineProps<Stream>()
 </script>
@@ -22,7 +22,7 @@ defineProps<Stream>()
 </template>
 
 <style lang="scss" scoped>
-@use '/assets/styles/mixins.scss' as *;
+
 .channel {
   @include flex(row, space-between, center);
   padding: 0.3125rem 0.625rem;
