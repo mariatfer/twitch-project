@@ -1,6 +1,6 @@
 import FetchError from '@/utils/FetchError'
 import { tags } from '@/mocks/tags'
-import type { Stream, TokenResponse, UserData, ApiResponse, Category, Tag } from '@/types/types'
+import type { Stream, TokenResponse, UserData, ApiResponse, Category, Tag, User } from '@/types/types'
 
 export class TwitchAPI {
   private clientId: string
@@ -48,8 +48,7 @@ export class TwitchAPI {
 
     if (!response.ok) {
       const errorData = await response.json()
-      console.error('Error obtaining token:', errorData)
-      throw new FetchError('Error obtaining token')
+      throw new FetchError('Error obtaining token:' + errorData.message)
     }
 
     const tokenData: TokenResponse = await response.json()
@@ -94,8 +93,7 @@ export class TwitchAPI {
 
     if (!response.ok) {
       const errorData = await response.json()
-      console.error('Error obtaining live streams:', errorData)
-      throw new FetchError('Error obtaining live streams')
+      throw new FetchError('Error obtaining live streams: ' + errorData.message)
     }
 
     const data: ApiResponse<Stream> = await response.json()
@@ -113,12 +111,10 @@ export class TwitchAPI {
 
         if (!userResponse.ok) {
           const userError = await userResponse.json()
-          console.error('Error obtaining user data:', userError)
-          throw new FetchError('Error obtaining user data')
+          throw new FetchError('Error obtaining user data: ' + userError.message)
         }
 
         const userData = await userResponse.json()
-
         const profileImageUrl = userData.data[0].profile_image_url
 
         return {
@@ -151,8 +147,7 @@ export class TwitchAPI {
   
     if (!response.ok) {
       const errorData = await response.json();
-      console.error('Error fetching categories:', errorData);
-      throw new Error('Error fetching categories');
+      throw new FetchError('Error fetching categories: ' + errorData.message);
     }
   
     const data: ApiResponse<Category> = await response.json();
@@ -173,7 +168,6 @@ export class TwitchAPI {
       }),
     );
   
-    console.log('Categorías con detalles:', categoriesWithDetails);
     return categoriesWithDetails;
   }
   
@@ -191,8 +185,7 @@ export class TwitchAPI {
   
     if (!response.ok) {
       const errorData = await response.json();
-      console.error('Error fetching streams for category:', errorData);
-      return 0;
+      throw new FetchError('Error fetching streams for category:' + errorData.message);
     }
   
     const data = await response.json();
@@ -209,4 +202,26 @@ export class TwitchAPI {
   private generateState(): string {
     return Math.random().toString(36).substring(7)
   }
+
+  public async getUserInfo(accessToken: string, userId: string): Promise<User> {
+    const url = `https://api.twitch.tv/helix/users?id=${userId}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Client-ID': this.clientId,
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new FetchError('Error fetching user info:' + errorData.message);
+    }
+
+    const data: ApiResponse<User> = await response.json();
+    return data.data[0];
+  }
+
 }
