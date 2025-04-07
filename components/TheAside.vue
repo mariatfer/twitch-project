@@ -60,13 +60,16 @@ const iconButton = {
       /></TheButton>
     </div>
     <div class="aside__content">
-      <TheChannel v-for="channel in recommendedChannels" :key="channel.id" v-bind="channel" />
+      <TheChannel
+        v-for="channel in recommendedChannels"
+        :key="channel.id"
+        v-bind="channel"
+      />
     </div>
   </aside>
 </template>
 
 <style lang="scss" scoped>
-
 .aside {
   @include flex(column, flex-start);
   width: 16.25rem;
@@ -99,8 +102,12 @@ const iconButton = {
   &__content {
     align-items: center;
   }
+
   .aside__header {
     justify-content: center;
+    &--button {
+      transform: rotate(180deg);
+    }
   }
   @media screen and (max-width: 768px) {
     .aside__header {

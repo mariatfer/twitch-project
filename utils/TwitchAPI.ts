@@ -53,7 +53,6 @@ export class TwitchAPI {
     }
 
     const tokenData: TokenResponse = await response.json()
-    console.log('Token obtenido:', tokenData)
     return tokenData
   }
 
