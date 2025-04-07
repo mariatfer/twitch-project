@@ -67,7 +67,6 @@ const iconButton = {
   &__iframe {
     position: relative;
     z-index: 1;
-    max-height: 54.3125rem;
   }
   &--collapsed {
     width: 3rem;
