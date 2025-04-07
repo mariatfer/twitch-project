@@ -10,6 +10,7 @@ body{
   height: 100vh;
   font-family: 'Inter Variable', sans-serif;
   font-size: .8125rem;
+  overflow-x: hidden;
 }
 
 ul,
