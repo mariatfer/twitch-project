@@ -1,39 +1,31 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { useAuthStore } from '@/stores/auth';
-import { TwitchAPI } from '@/utils/TwitchAPI';
+import { onMounted } from 'vue'
+import { TwitchAPI } from '@/utils/TwitchAPI'
 
-const twitchApi = new TwitchAPI();
+const twitchApi = new TwitchAPI()
 
 async function handleTwitchCallback() {
-  const queryParams = new URLSearchParams(window.location.search);
-  const code = queryParams.get('code');
-  const state = queryParams.get('state');
-  const authStore = useAuthStore();
+  const queryParams = new URLSearchParams(window.location.search)
+  const code = queryParams.get('code')
 
   if (code) {
     try {
-      const tokenResponse = await twitchApi.exchangeCodeForToken(code);
-      const userData = await twitchApi.getUserData(tokenResponse.access_token);
-
-      authStore.setAuth(tokenResponse.access_token, userData.data[0].login);
-
-      if (state) {
-        window.location.href = decodeURIComponent(state);
-      }
+      const tokenResponse = await twitchApi.exchangeCodeForToken(code)
+      const users = await twitchApi.getUserData(tokenResponse.access_token)
+      console.log('Users:', users)
     } catch (error) {
-      console.error('Error handling Twitch callback:', error);
+      console.error('Error handling Twitch callback:', error)
     }
   } else {
-    console.error('The authorization code was not found in the URL.');
+    console.error('The authorization code was not found in the URL.')
   }
 }
 
 onMounted(() => {
   if (window.location.search.includes('code=')) {
-    handleTwitchCallback();
+    handleTwitchCallback()
   }
-});
+})
 </script>
 
 <template>
@@ -62,6 +54,7 @@ onMounted(() => {
   &__main {
     @include flex(row, flex-start, flex-start, nowrap, 0.625rem);
     width: 100%;
+    padding: 1.25rem;
   }
 }
 </style>
