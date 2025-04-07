@@ -2,7 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { TwitchAPI } from '@/utils/TwitchAPI'
 import getToken from '@/utils/TwitchAuth'
-import type { Category } from '~/types/types'
+import type { Category } from '@/types/types'
+import  { hideElementsInSecondRow }  from '@/utils/domUtils'
 
 const twitchApi = new TwitchAPI()
 const categories = ref<Category[]>([])
@@ -15,14 +16,25 @@ async function fetchCategories() {
       7,
     )
     categories.value = results
+    await nextTick()
+    hideElementsInSecondRow('.top-categories__content', 'category-card')
   } catch (error) {
     console.error('Error fetching categories:', error)
   }
 }
 
 onMounted(() => {
-  fetchCategories()
-})
+  fetchCategories();
+  window.addEventListener('resize', () =>
+    hideElementsInSecondRow('.top-categories__content', 'category-card'),
+  );
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', () =>
+    hideElementsInSecondRow('.top-categories__content', 'category-card'),
+  );
+});
 </script>
 
 <template>
@@ -48,10 +60,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .top-categories {
-  display: flex;
-  flex-direction: column;
+  @include flex(column, flex-start, flex-start, nowrap, 0.625rem);
   width: 100%;
-  gap: 0.625rem;
   &__title {
     color: #dbdbdb;
     &--blue {
@@ -59,15 +69,12 @@ onMounted(() => {
     }
   }
   &__content {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 1.9rem;
+    @include flex(row, flex-start, flex-start, wrap, 1.9rem);
     width: 100%;
     color: #dbdbdb;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
-    
+
     @media screen and (max-width: 1000px) {
       justify-self: flex-start;
     }
