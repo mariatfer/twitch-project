@@ -17,7 +17,7 @@ onMounted(async () => {
 
 function redirectToAuthUrl() {
   if (authUrl.value) {
-    window.location.href = authUrl.value; // Redirige al usuario a la URL de autorización
+    window.location.href = authUrl.value;
   } else {
     console.error('Authorization URL is not available.');
   }
