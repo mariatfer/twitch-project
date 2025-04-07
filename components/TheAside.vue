@@ -74,6 +74,7 @@ const iconButton = {
   @include flex(column, flex-start);
   width: 16.25rem;
   min-width: 16.25rem;
+  padding-right: 0.625rem;
   &__header {
     @include flex(row, space-between);
     padding: 0.625rem 0.3125rem;

@@ -44,6 +44,8 @@ onMounted(async () => {
           class="streamer__video"
         />
         <StreamData v-if="streamData" v-bind="streamData" />
+        <h3>About {{ streamData?.user_name }}</h3>
+        <ChannelData v-if="streamData" v-bind="streamData" />
       </article>
       <TheChat v-if="streamData" v-bind="streamData" />
     </div>
@@ -54,10 +56,10 @@ onMounted(async () => {
 .main__content {
   @include flex(row, space-between, flex-start, nowrap, 0, 1);
   width: 100%;
-  margin-bottom: 5em;
   .streamer {
     @include flex(column, flex-start, flex-start, nowrap, 1.25rem);
     width: 100%;
+    padding: 0 .9375rem 0 .625rem;
     &__video {
       @media screen and (max-width: 1600px) {
         height: 31.25rem;

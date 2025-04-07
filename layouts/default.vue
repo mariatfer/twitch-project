@@ -52,7 +52,7 @@ onMounted(() => {
     @include flex(row, space-between, center);
   }
   &__main {
-    @include flex(row, flex-start, flex-start, nowrap, 0.625rem);
+    @include flex(row, flex-start, flex-start, nowrap);
     width: 100%;
     padding: 1.25rem;
   }

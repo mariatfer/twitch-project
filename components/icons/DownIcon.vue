@@ -1,3 +1,9 @@
+<script setup lang="ts">
+defineProps({
+  color: { type: String, default: '#189AFC' },
+});
+</script>
+
 <template>
   <svg
     width="17"
@@ -8,7 +14,7 @@
   >
     <path
       d="M3 8.5L5.22727 6.5L12.5 13.5L19.7727 6.5L22 8.5L12.5 17.5L3 8.5Z"
-      fill="#189AFC"
+      :fill="color" 
     />
   </svg>
 </template>

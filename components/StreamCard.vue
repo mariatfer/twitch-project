@@ -16,9 +16,9 @@ defineProps<Stream>()
         <h4 class="info__content--color">{{ $props.user_name }}<VerfiedIcon /></h4>
         <p class="info__content--color">{{ $props.game_name }}</p>
         <ul class="tags__list">
-          <li v-for="tag in tags.slice(0, 2)" :key="tag.tag_id" class="tags__item">
+          <TheTag v-for="tag in tags.slice(0, 2)" :key="tag.tag_id" class="tags__item">
             {{ tag }}
-          </li>
+          </TheTag>
         </ul>
       </div>
     </section>
@@ -87,21 +87,6 @@ defineProps<Stream>()
   &__list {
     @include flex(row, flex-start, flex-start, nowrap, 0.625rem);
     margin-top: 0.125rem;
-  }
-  &__item {
-    padding: 0.1875rem 0.4375rem;
-    border-radius: 0.9375rem;
-    background-color: #2f2f35;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #adadb8;
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      background-color: #189afc;
-      transition: all 0.2s ease-in-out;
-      color: #fff;
-    }
   }
 }
 </style>
