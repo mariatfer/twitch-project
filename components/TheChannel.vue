@@ -2,11 +2,11 @@
 import type { Stream } from '@/types/types'
 import { formatViewerCount } from '@/utils/formatters'
 
-defineProps<Stream>()
+const props = defineProps<Stream>()
 </script>
 
 <template>
-  <NuxtLink to="/" class="channel">
+  <NuxtLink :to="`/${props.user_name}`" class="channel">
     <img :src="$props.profile_image_url" alt="Channel image" class="channel__logo" >
     <section class="channel__info">
       <h3 class="channel__info--title">{{ $props.user_name }}</h3>
