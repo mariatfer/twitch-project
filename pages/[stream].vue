@@ -36,7 +36,7 @@ onMounted(async () => {
       <article class="streamer">
         <iframe
           v-if="streamData"
-          :src="`https://player.twitch.tv/?channel=${streamData?.user_name}&parent=localhost`"
+          :src="`https://player.twitch.tv/?channel=${streamData?.user_name}&parent=mariatfer.github.io`"
           height="715"
           width="100%"
           allowfullscreen

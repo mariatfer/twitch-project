@@ -43,7 +43,7 @@ const iconButton = {
     /></TheButton>
     <iframe
       v-if="$props"
-      :src="`https://www.twitch.tv/embed/${$props.user_name}/chat?parent=localhost&darkpopout=true&language=en`"
+      :src="`https://www.twitch.tv/embed/${$props.user_name}/chat?parent=mariatfer.github.io&darkpopout=true&language=en`"
       height="100%"
       width="350"
       frameborder="0"
