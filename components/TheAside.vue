@@ -66,7 +66,7 @@ const iconButton = {
 </template>
 
 <style lang="scss" scoped>
-@use '/assets/styles/mixins.scss' as *;
+
 .aside {
   @include flex(column, flex-start);
   width: 16.25rem;

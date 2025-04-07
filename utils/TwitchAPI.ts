@@ -1,5 +1,5 @@
 import FetchError from '@/utils/FetchError'
-import { tags } from '@/mocks/tags' // Asegúrate de que la ruta sea correcta
+import { tags } from '@/mocks/tags'
 import type { Stream, TokenResponse, UserData, ApiResponse, Category, Tag } from '@/types/types'
 
 export class TwitchAPI {
@@ -157,8 +157,7 @@ export class TwitchAPI {
     }
   
     const data: ApiResponse<Category> = await response.json();
-  
-    // Realiza solicitudes adicionales para obtener los viewers de cada categoría
+
     const categoriesWithDetails = await Promise.all(
       data.data.map(async (category) => {
         const viewerCount = await this.getViewerCountForCategory(category.id, accessToken);
@@ -199,7 +198,6 @@ export class TwitchAPI {
   
     const data = await response.json();
   
-    // Suma el número de viewers de todos los streams de la categoría
     return data.data.reduce((total: number, stream: Stream) => total + stream.viewer_count, 0);
   }
 

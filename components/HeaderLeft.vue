@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import MoreIcon from '@/components/icons/MoreIcon.vue'
-import TheButton from './TheButton.vue'
 
 const iconButton = {
   background: 'transparent',
@@ -18,7 +17,7 @@ const iconButton = {
 </template>
 
 <style lang="scss" scoped>
-@use '/assets/styles/mixins.scss' as *;
+
 
 .home {
   @include flex(row, flex-start, center, wrap, 0.5em);

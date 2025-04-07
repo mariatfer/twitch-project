@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import StreamCard from '@/components/StreamCard.vue'
 import type { Stream, ApiResponse } from '@/types/types'
 import { TwitchAPI } from '@/utils/TwitchAPI'
 import getToken from '@/utils/TwitchAuth'
@@ -69,11 +68,10 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+
 .live-recommendation {
-  display: flex;
-  flex-direction: column;
+  @include flex(column, flex-start, flex-start, nowrap, 0.625rem);
   width: 100%;
-  gap: 0.625rem;
   &__title {
     color: #dbdbdb;
     &--blue {

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import VerfiedIcon from '@/components/icons/VerifiedIcon.vue'
-import type { Stream } from '~/types/types'
+import type { Stream } from '@/types/types'
 defineProps<Stream>()
 </script>
 
 <template>
-  <NuxtLink to="/" class="live-recommendation__card">
+  <NuxtLink :to="`/${$props.user_name}`" class="live-recommendation__card">
     <img :src="$props.thumbnail_url" alt="Stream thumbnail" class="card__img" >
     <section class="card__info">
       <img :src="$props.profile_image_url" alt="Profile image" class="info__img" >
@@ -27,10 +27,7 @@ defineProps<Stream>()
 
 <style scoped lang="scss">
 .live-recommendation__card {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 0.625rem;
+  @include flex(column, flex-start, flex-start, nowrap, 0.625rem);
   box-sizing: border-box;
   border-radius: 0.3125rem;
   color: #dbdbdb;
@@ -53,8 +50,7 @@ defineProps<Stream>()
     }
   }
   &__info {
-    display: flex;
-    gap: 0.75rem;
+    @include flex(row, flex-start, flex-start, nowrap, 0.75rem);
   }
 }
 .info {
@@ -65,9 +61,7 @@ defineProps<Stream>()
     object-fit: cover;
   }
   &__content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3125rem;
+    @include flex(column, flex-start, flex-start, nowrap, 0.3125rem);
 
     &--nowrap {
       font-size: 0.875rem;
@@ -81,10 +75,8 @@ defineProps<Stream>()
       }
     }
     &--color {
+      @include flex(row, flex-start, center, nowrap, 0.125rem);
       color: #a6a6b1;
-      display: flex;
-      align-items: center;
-      gap: 0.125rem;
       font-size: 0.8125rem;
       font-weight: 500;
     }
@@ -93,8 +85,7 @@ defineProps<Stream>()
 
 .tags {
   &__list {
-    display: flex;
-    gap: 0.625rem;
+    @include flex(row, flex-start, flex-start, nowrap, 0.625rem);
     margin-top: 0.125rem;
   }
   &__item {
