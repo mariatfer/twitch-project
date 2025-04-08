@@ -1,11 +1,37 @@
 <script setup lang="ts">
 import SearchIcon from '@/components/icons/SearchIcon.vue'
+const isMovile = ref(false)
 
-const searchButton = {
-  background: 'var(--c-transparentgrey)',
-  borderTopLeftRadius: '0',
-  borderBottomLeftRadius: '0',
+const searchButtonStyles = computed(() => {
+  return isMovile.value
+    ? {
+        background: 'var(--c-transparentgrey)',
+        borderTopLeftRadius: '0',
+        borderBottomLeftRadius: '0',
+      }
+    : {
+        background: 'transparent',
+        borderTopLeftRadius: '0',
+        borderBottomLeftRadius: '0',
+      }
+})
+
+function handleResize() {
+  if (window.innerWidth >= 768) {
+    isMovile.value = true
+  } else {
+    isMovile.value = false
+  }
 }
+
+onMounted(() => {
+  handleResize()
+  window.addEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+})
 </script>
 
 <template>
@@ -19,18 +45,20 @@ const searchButton = {
       aria-label="Search"
       aria-describedby="search"
     >
-    <TheButton :style="searchButton" class="search__button"><SearchIcon /></TheButton>
+    <TheButton :style="searchButtonStyles" class="search__button"
+      ><SearchIcon
+    /></TheButton>
   </section>
 </template>
 
 <style lang="scss" scoped>
-
 .search {
   @include flex(row, center, center, wrap, 0);
   width: 100%;
   max-width: 30em;
   &__input {
     border: 0.0625rem solid var(--c-regulargrey);
+    color: var(--c-white);
     border-top-left-radius: 0.3125rem;
     border-bottom-left-radius: 0.3125rem;
     padding: 0.65rem;
@@ -51,26 +79,30 @@ const searchButton = {
     &:hover::placeholder {
       color: var(--c-semilightgrey);
     }
-
-    @media screen and (max-width: 37.5rem) {
-      flex-grow: 0;
-      min-width: 4.8rem;
-      max-width: 5rem;
-    }
-    &__button {
-      padding: 0;
-      border: 0.0625rem solid var(--c-semigrey);
-      transition: all 0.2s ease-in-out;
-      max-width: 2.125rem;
-      width: 2.125rem;
-      &:hover {
-        border: 0.0625rem solid var(--c-blue);
-      }
+  }
+  &__button {
+    padding: 0;
+    border: 0.0625rem solid var(--c-semigrey);
+    transition: all 0.2s ease-in-out;
+    max-width: 2.125rem;
+    width: 2.125rem;
+    &:hover {
+      border: 0.0625rem solid var(--c-blue);
     }
   }
   @media screen and (max-width: 60.5rem) {
     display: inline-flex;
     width: auto;
+    &__input {
+      display: none;
+    }
+    &__button {
+      border: none;
+      &:hover {
+        border: none;
+        transform: translateY(-0.125rem);
+      }
+    }
   }
 }
 </style>

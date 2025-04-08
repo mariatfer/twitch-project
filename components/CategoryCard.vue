@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Category } from '@/types/types'
 import { formatViewerCount } from '@/utils/formatters'
+const MAX_TAGS = 2;
 defineProps<Category>()
 </script>
 
@@ -14,7 +15,7 @@ defineProps<Category>()
       {{ formatViewerCount($props.viewer_count) }} viewers
     </p>
     <ul class="category-card__list">
-      <TheTag v-for="tag in tags.slice(0, 2)" :key="tag.tag_id" class="list__item">
+      <TheTag v-for="tag in tags.slice(0, MAX_TAGS)" :key="tag.tag_id" class="list__item">
         {{ tag.tag_name }}
       </TheTag>
     </ul>
