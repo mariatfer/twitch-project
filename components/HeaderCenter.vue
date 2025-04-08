@@ -2,7 +2,7 @@
 import SearchIcon from '@/components/icons/SearchIcon.vue'
 
 const searchButton = {
-  background: 'rgba(83, 83, 95, 0.38)',
+  background: 'var(--c-transparentgrey)',
 }
 </script>
 
@@ -38,16 +38,16 @@ const searchButton = {
     transition: all 0.2s ease-in-out;
     &:focus {
       outline: none;
-      border-color: #189afc;
+      border-color: var(--c-blue);
     }
     &:hover {
-      border-color: #189afc;
+      border-color: var(--c-blue);
     }
     &::placeholder {
       transition: all 0.2s ease-in-out;
     }
     &:hover::placeholder {
-      color: #dbdbdb;
+      color: var(--c-semilightgrey);
     }
 
     @media screen and (max-width: 600px) {
@@ -57,14 +57,14 @@ const searchButton = {
     }
     &__button {
       padding: 0;
-      border: 0.0625rem solid #2f2f35;
+      border: 0.0625rem solid var(--c-semigrey);
       transition: all 0.2s ease-in-out;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       max-width: 2.125rem;
       width: 2.125rem;
       &:hover {
-        border: 0.0625rem solid #189afc;
+        border: 0.0625rem solid var(--c-blue);
       }
     }
   }

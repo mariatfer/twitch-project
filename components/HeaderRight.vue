@@ -24,11 +24,11 @@ function redirectToAuthUrl() {
 }
 
 const primaryButton = {
-  background: '#189AFC',
+  background: 'var(--c-blue)',
 }
 
 const secundaryButton = {
-  background: 'rgba(83, 83, 95, 0.38)',
+  background: 'var(--c-transparentgrey)',
 }
 
 const iconButton = {
@@ -72,7 +72,7 @@ const notificationButton = {
       right: -0.15rem;
       width: fit-content;
       background-color: red;
-      border: 0.1875rem solid #18181b;
+      border: 0.1875rem solid var(--c-midgrey);
       padding: 0.1rem 0.4rem;
       border-radius: 0.9375rem;
       font-size: 0.65rem;

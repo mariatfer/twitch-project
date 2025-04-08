@@ -124,10 +124,10 @@ const iconButton = {
     
   }
   .span--viewer {
-    color: #FF8280;
+    color: var(--c-pink);
   }
   &--blue {
-    color: #189AFC;
+    color: var(--c-blue);
   }
 }
 .tags {

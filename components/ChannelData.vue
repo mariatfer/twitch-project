@@ -69,20 +69,20 @@ onMounted(() => {
 .channel-data {
   @include flex(column, flex-start, flex-start, nowrap, 0.625rem);
   width: 100%;
-  background-color: #18181b;
+  background-color: var(--c-midgrey);
   padding: 1.25rem;
   &__stat {
     @include flex(row, flex-start, flex-end, nowrap, 0.625rem);
     width: 100%;
     font-weight: 600;
-    color: #dbdbdb;
+    color: var(--c-semilightgrey);
     &--followers {
-      color: #fff;
+      color: var(--c-white);
       font-size: 1.125rem;
     }
   }
   &__description {
-    color: #fff;
+    color: var(--c-white);
   }
   &__line {
     width: 100%;
@@ -97,7 +97,7 @@ onMounted(() => {
     &--link {
       @include flex(row, flex-start, center, wrap, 0.3125rem);
       font-size: 1rem;
-      color: #dbdbdb;
+      color: var(--c-semilightgrey);
       text-decoration: none;
       &:hover {
         text-decoration: underline;

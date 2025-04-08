@@ -73,9 +73,9 @@ onMounted(() => {
   @include flex(column, flex-start, flex-start, nowrap, 0.625rem);
   width: 100%;
   &__title {
-    color: #dbdbdb;
+    color: #var(--c-semilightgrey);
     &--blue {
-      color: #189afc;
+      color: var(--c-blue);
     }
   }
   &__content {
@@ -84,7 +84,7 @@ onMounted(() => {
     gap: 2.3125rem;
     width: 100%;
     height: 19.875rem;
-    color: #dbdbdb;
+    color: #var(--c-semilightgrey);
     text-decoration: none;
     transition: all 0.2s ease-in-out;
     overflow: hidden;

@@ -28,7 +28,7 @@ defineProps<Category>()
   @include flex(column, space-between);
   box-sizing: border-box;
   border-radius: 0.3125rem;
-  color: #dbdbdb;
+  color: #var(--c-semilightgrey);
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   min-height: 21rem;
@@ -44,8 +44,8 @@ defineProps<Category>()
     &:hover {
       transform: translate(0.0625rem, -0.0625rem);
       transition: all 0.2s ease-in-out;
-      border-bottom: 0.1875rem solid #189afc;
-      border-left: 0.1875rem solid #189afc;
+      border-bottom: 0.1875rem solid var(--c-blue);
+      border-left: 0.1875rem solid var(--c-blue);
     }
   }
   &__title--nowrap {
@@ -55,7 +55,7 @@ defineProps<Category>()
     white-space: nowrap;
     max-width: 11.3125rem;
     &:hover {
-      color: #189afc;
+      color: var(--c-blue);
       transition: all 0.2s ease-in-out;
     }
   }

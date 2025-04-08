@@ -30,7 +30,7 @@ const props = defineProps<Stream>()
     background-color: #1e1e1e;
     transition: all 0.2s ease-in-out;
     & .channel__info--title {
-      color: #189afc;
+      color: var(--c-blue);
       transition: all 0.2s ease-in-out;
     }
   }
@@ -46,7 +46,7 @@ const props = defineProps<Stream>()
     &--title {
       font-size: 0.875rem;
       font-weight: 500;
-      color: #fff;
+      color: var(--c-white);
     }
     &--description {
       font-size: 0.8125rem;
