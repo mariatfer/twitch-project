@@ -27,7 +27,4 @@ export default defineNuxtConfig({
       },
     },
   },
-  app: {
-    baseURL: '/mariatfer.github.io/',
-  },
 })
