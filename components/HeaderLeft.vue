@@ -30,7 +30,7 @@ const iconButton = {
       transition: transform 0.4s ease-in-out;
     }
     &:hover .home__logo--title {
-      color: #189afc;
+      color: var(--c-blue);
       transition: color 0.3s ease-in-out;
     }
     &--title {

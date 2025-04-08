@@ -64,15 +64,15 @@ onUnmounted(() => {
   @include flex(column, flex-start, flex-start, nowrap, 0.625rem);
   width: 100%;
   &__title {
-    color: #dbdbdb;
+    color: var(--c-semilightgrey);
     &--blue {
-      color: #189afc;
+      color: var(--c-blue);
     }
   }
   &__content {
     @include flex(row, flex-start, flex-start, wrap, 1.9rem);
     width: 100%;
-    color: #dbdbdb;
+    color: var(--c-semilightgrey);
     text-decoration: none;
     transition: all 0.2s ease-in-out;
   }

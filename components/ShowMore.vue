@@ -16,7 +16,7 @@ const ShowButton = {
   display: 'flex',
   alignItems: 'center',
   gap: '0.125rem',
-  color: '#189AFC',
+  color: 'var(--c-blue)',
   fontWeight: 600,
 }
 </script>
@@ -42,7 +42,7 @@ const ShowButton = {
     margin: 0.625rem 0;
   }
   &__button:hover {
-    border: .0625rem solid #189afc;
+    border: .0625rem solid var(--c-blue);
   }
   .rotated {
     transform: rotate(180deg); /* Rota el ícono 180 grados */
