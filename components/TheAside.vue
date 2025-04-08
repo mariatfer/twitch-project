@@ -110,7 +110,7 @@ const iconButton = {
       transform: rotate(180deg);
     }
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 48rem) {
     .aside__header {
       display: none;
     }

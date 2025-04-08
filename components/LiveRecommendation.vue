@@ -73,7 +73,7 @@ onMounted(() => {
   @include flex(column, flex-start, flex-start, nowrap, 0.625rem);
   width: 100%;
   &__title {
-    color: #var(--c-semilightgrey);
+    color: var(--c-semilightgrey);
     &--blue {
       color: var(--c-blue);
     }
@@ -84,18 +84,18 @@ onMounted(() => {
     gap: 2.3125rem;
     width: 100%;
     height: 19.875rem;
-    color: #var(--c-semilightgrey);
+    color: var(--c-semilightgrey);
     text-decoration: none;
     transition: all 0.2s ease-in-out;
     overflow: hidden;
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 62.5rem) {
       grid-template-columns: repeat(auto-fill, minmax(20.3125rem, 23.875rem));
     }
     &--expanded {
       height: auto;
     }
   }
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 120rem) {
     max-width: 95.5rem;
   }
 }

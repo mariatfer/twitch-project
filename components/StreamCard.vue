@@ -30,12 +30,12 @@ defineProps<Stream>()
   @include flex(column, flex-start, flex-start, nowrap, 0.625rem);
   box-sizing: border-box;
   border-radius: 0.3125rem;
-  color: #var(--c-semilightgrey);
+  color: var(--c-semilightgrey);
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   height: fit-content;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 48rem) {
     flex-basis: 100%;
   }
 }
@@ -76,7 +76,7 @@ defineProps<Stream>()
     }
     &--color {
       @include flex(row, flex-start, center, nowrap, 0.125rem);
-      color: #a6a6b1;
+      color: var(--c-grey);
       font-size: 0.8125rem;
       font-weight: 500;
     }

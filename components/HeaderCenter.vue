@@ -28,7 +28,7 @@ const searchButton = {
   width: 100%;
   max-width: 30em;
   &__input {
-    border: 0.0625rem solid #5d5d61;
+    border: 0.0625rem solid var(--c-regulargrey);
     border-top-left-radius: 0.3125rem;
     border-bottom-left-radius: 0.3125rem;
     padding: 0.65rem;
@@ -50,7 +50,7 @@ const searchButton = {
       color: var(--c-semilightgrey);
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 37.5rem) {
       flex-grow: 0;
       min-width: 4.8rem;
       max-width: 5rem;
@@ -68,7 +68,7 @@ const searchButton = {
       }
     }
   }
-  @media screen and (max-width: 968px) {
+  @media screen and (max-width: 60.5rem) {
     display: inline-flex;
     width: auto;
   }

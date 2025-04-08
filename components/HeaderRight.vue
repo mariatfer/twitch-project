@@ -71,7 +71,7 @@ const notificationButton = {
       top: -0.35rem;
       right: -0.15rem;
       width: fit-content;
-      background-color: red;
+      background-color: var(--c-red);
       border: 0.1875rem solid var(--c-midgrey);
       padding: 0.1rem 0.4rem;
       border-radius: 0.9375rem;

@@ -38,7 +38,7 @@ const ShowButton = {
   &__line {
     width: calc(50% - 3.95rem);
     height: 0.0625rem;
-    background-color: #5d5d61;
+    background-color: var(--c-regulargrey);
     margin: 0.625rem 0;
   }
   &__button:hover {

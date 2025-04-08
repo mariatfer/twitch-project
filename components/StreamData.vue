@@ -93,7 +93,7 @@ const iconButton = {
     bottom: -0.6em;
     left: 50%;
     transform: translateX(-50%);
-    background-color: red;
+    background-color: var(--c-red);
     font-weight: 600;
     padding: 0.25em 0.5em;
     border-radius: 0.25rem;

@@ -15,7 +15,7 @@
     background-color: var(--c-semigrey);
     font-size: 0.75rem;
     font-weight: 700;
-    color: #var(--c-lightgrey);
+    color: var(--c-lightgrey);
     text-decoration: none;
     transition: all 0.2s ease-in-out;
     width: auto;

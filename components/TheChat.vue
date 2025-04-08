@@ -80,7 +80,7 @@ const iconButton = {
     .chat__button {
       transform: rotate(0deg);
     }
-    @media screen and (max-width: 980px) {
+    @media screen and (max-width: 61.25rem) {
       & {
         display: none;
       }

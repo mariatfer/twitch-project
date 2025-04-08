@@ -14,7 +14,7 @@ defineEmits(['click']);
 <style lang="scss" scoped>
 .button {
   padding: 0.2em 0.6em;
-  color: #FFF;
+  color: var(--c-white);
   font-size: 0.8125rem;
   border-radius: 0.25rem;
   border: none;

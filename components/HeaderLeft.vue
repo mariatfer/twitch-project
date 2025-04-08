@@ -35,7 +35,7 @@ const iconButton = {
     }
     &--title {
       @include flex(row, center, center, wrap, 0.5em);
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 48rem) {
         display: none;
       }
     }

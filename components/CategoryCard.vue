@@ -28,13 +28,13 @@ defineProps<Category>()
   @include flex(column, space-between);
   box-sizing: border-box;
   border-radius: 0.3125rem;
-  color: #var(--c-semilightgrey);
+  color: var(--c-semilightgrey);
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   min-height: 21rem;
   width: calc(100% / 7 - 1.7rem);
   min-width: 12rem;
-  @media screen and (max-width: 996px) {
+  @media screen and (max-width: 62.25rem) {
     width: calc(100% / 3 - 1.7rem);
     min-width: unset;
     min-height: unset;
@@ -61,7 +61,7 @@ defineProps<Category>()
   }
   &__viewers--color {
     @include flex(row, flex-start, center, nowrap, 0.125rem);
-    color: #a6a6b1;
+    color: var(--c-semilightgrey);
     font-size: 0.8125rem;
     font-weight: 500;
     text-overflow: ellipsis;
@@ -73,7 +73,7 @@ defineProps<Category>()
     @include flex(row, flex-start, center, nowrap, 0.625rem);
     margin-top: 0.125rem;
     .list__item {
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 48rem) {
         &:nth-child(2) {
           visibility: hidden;
         }

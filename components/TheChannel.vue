@@ -27,7 +27,7 @@ const props = defineProps<Stream>()
   @include flex(row, space-between, center);
   padding: 0.3125rem 0.625rem;
   &:hover {
-    background-color: #1e1e1e;
+    background-color: var(--c-graphite);
     transition: all 0.2s ease-in-out;
     & .channel__info--title {
       color: var(--c-blue);
@@ -50,7 +50,7 @@ const props = defineProps<Stream>()
     }
     &--description {
       font-size: 0.8125rem;
-      color: #b8b8b8;
+      color: var(--c-lightgrey);
     }
   }
   &__live {
@@ -63,7 +63,7 @@ const props = defineProps<Stream>()
     &--point {
       width: 0.5rem;
       height: 0.5rem;
-      background-color: #ff0000;
+      background-color: var(--c-red);
       border-radius: 50%;
     }
     &--followers {
