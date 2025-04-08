@@ -55,7 +55,7 @@ onMounted(() => {
     @include flex(row, flex-start, flex-start, nowrap);
     width: 100%;
     padding-left: 1.25rem;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 48rem) {
       padding-left: 0;
       
     }
