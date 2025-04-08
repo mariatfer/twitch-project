@@ -43,8 +43,10 @@ const iconButton = {
       <div class="stream-data--align">
         <h3 class="stream-data__user">{{ $props.user_name }}</h3>
         <div class="stream-data__buttons--align">
-          <TheButton :style="buttonFollow"><FavIcon />Follow</TheButton>
-          <TheButton :style="buttonSub"
+          <TheButton :style="buttonFollow" class="stream-data__button"
+            ><FavIcon />Follow</TheButton
+          >
+          <TheButton :style="buttonSub" class="stream-data__button"
             ><StarIcon />Suscribe<DownIcon color="#FFF"
           /></TheButton>
         </div>
@@ -58,8 +60,12 @@ const iconButton = {
             <span class="stream-data__span">3:23:05</span>
           </div>
           <div class="stream-data__buttons--align">
-            <TheButton :style="iconButton"><DownloadIcon /></TheButton>
-            <TheButton :style="iconButton"><MoreIcon /></TheButton>
+            <TheButton :style="iconButton" class="stream-data__button"
+              ><DownloadIcon
+            /></TheButton>
+            <TheButton :style="iconButton" class="stream-data__button"
+              ><MoreIcon
+            /></TheButton>
           </div>
         </div>
       </section>
@@ -75,7 +81,7 @@ const iconButton = {
 
 <style lang="scss" scoped>
 .stream-thumbnail {
-  @include flex(row, flex-start, flex-start, nowrap, 0.625rem);
+  @include flex(row, flex-start, flex-start, nowrap, .125rem);
   width: 100%;
   &--align {
     @include flex(row, center, center);
@@ -87,6 +93,7 @@ const iconButton = {
     height: auto;
     border-radius: 50%;
     object-fit: cover;
+    margin-right: .3125rem;
   }
   &__badge {
     position: absolute;
@@ -107,7 +114,8 @@ const iconButton = {
     @include flex(row, space-between, flex-start, nowrap, 0.625rem);
     width: 100%;
   }
-  &__user, &__title {
+  &__user,
+  &__title {
     @include flex(row, flex-start, center, wrap);
     user-select: none;
   }
@@ -121,13 +129,17 @@ const iconButton = {
   }
   &__span {
     margin: auto 0;
-    
   }
   .span--viewer {
     color: var(--c-pink);
   }
   &--blue {
     color: var(--c-blue);
+  }
+  &__button {
+    &:hover {
+      transform: translateY(-0.0625rem);
+    }
   }
 }
 .tags {

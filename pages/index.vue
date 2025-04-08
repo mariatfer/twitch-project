@@ -63,6 +63,10 @@ onUnmounted(() => {
       align-items: center;
       justify-content: space-between;
       width: auto;
+      &:hover {
+        transform: scale(1.025);
+        transition: all 0.2s ease-in-out;
+      }
     }
     .icon {
       position: relative;
