@@ -3,6 +3,8 @@ import SearchIcon from '@/components/icons/SearchIcon.vue'
 
 const searchButton = {
   background: 'var(--c-transparentgrey)',
+  borderTopLeftRadius: '0',
+  borderBottomLeftRadius: '0',
 }
 </script>
 
@@ -59,8 +61,6 @@ const searchButton = {
       padding: 0;
       border: 0.0625rem solid var(--c-semigrey);
       transition: all 0.2s ease-in-out;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
       max-width: 2.125rem;
       width: 2.125rem;
       &:hover {
