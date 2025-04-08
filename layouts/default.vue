@@ -47,7 +47,7 @@ onMounted(() => {
   @include flex(column);
   &__header {
     height: 3.125rem;
-    background-color: #18181b;
+    background-color: var(--c-midgrey);
     padding: 0 1.25rem;
     @include flex(row, space-between, center);
   }
