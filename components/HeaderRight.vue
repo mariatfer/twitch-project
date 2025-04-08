@@ -79,8 +79,11 @@ const notificationButton = {
       font-family: Arial, Helvetica, sans-serif;
     }
   }
-  &--translate:hover {
+  &--translate {
+    font-weight: 600;
+    &:hover{
     transform: translateY(-0.1rem);
+  }
   }
 }
 </style>

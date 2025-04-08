@@ -12,17 +12,13 @@ defineProps<Stream>()
 const buttonFollow = {
   display: 'flex',
   alignItems: 'center',
-  gap: '0.5rem',
-  fontWeight: '600',
-  padding: '0.25em 0.5em',
+
 }
 const buttonSub = {
   display: 'flex',
   alignItems: 'center',
-  gap: '0.5rem',
-  fontWeight: '600',
   backgroundColor: 'rgb(95, 83, 89, 38%)',
-  padding: '0.25em 0.5em',
+  
 }
 const iconButton = {
   background: 'transparent',
@@ -137,6 +133,9 @@ const iconButton = {
     color: var(--c-blue);
   }
   &__button {
+    font-weight: 600;
+    gap: 0.5rem;
+    padding: 0.25em 0.5em;
     &:hover {
       transform: translateY(-0.0625rem);
     }
