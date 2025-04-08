@@ -67,7 +67,7 @@ onUnmounted(() => {
     .icon {
       position: relative;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 48rem) {
       justify-content: center;
     }
   }

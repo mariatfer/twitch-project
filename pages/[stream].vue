@@ -61,7 +61,7 @@ onMounted(async () => {
     width: 100%;
     padding: 0 .9375rem 0 .625rem;
     &__video {
-      @media screen and (max-width: 1600px) {
+      @media screen and (max-width: 100rem) {
         height: 31.25rem;
       }
     }
