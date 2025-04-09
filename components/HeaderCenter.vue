@@ -90,18 +90,9 @@ onUnmounted(() => {
       border: 0.0625rem solid var(--c-blue);
     }
   }
-  @media screen and (max-width: 60.5rem) {
-    display: inline-flex;
-    width: auto;
-    &__input {
+  @media screen and (max-width: 64rem) {
+    & {
       display: none;
-    }
-    &__button {
-      border: none;
-      &:hover {
-        border: none;
-        transform: translateY(-0.125rem);
-      }
     }
   }
 }
