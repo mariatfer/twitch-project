@@ -27,22 +27,8 @@ function toggleAside() {
   isCollapsed.value = !isCollapsed.value
 }
 
-function handleResize() {
-  if (window.innerWidth <= 768) {
-    isCollapsed.value = true
-  } else {
-    isCollapsed.value = false
-  }
-}
-
 onMounted(() => {
-  handleResize()
-  window.addEventListener('resize', handleResize)
   fetchRecommendedChannels()
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', handleResize)
 })
 
 const iconButton = {
@@ -89,6 +75,22 @@ const iconButton = {
         transform: scale(1.1);
         transition: all 0.3s ease-in-out;
       }
+    }
+  }
+  @media screen and (max-width: 48rem) {
+    @include flex(row, flex-start, center, nowrap);
+    width: 100%;
+    max-height: 3.125rem;
+    overflow: hidden;
+    padding: 0;
+
+    &__header {
+      display: none;
+    }
+
+    &__content {
+      @include flex(row, flex-start, center, wrap, .3125rem);
+      width: 100%;
     }
   }
 }
