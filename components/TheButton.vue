@@ -1,8 +1,6 @@
 <script setup lang="ts">
 const props = defineProps({
   background: {type: String, default: 'var(--c-blue)'},
-  display: {type: String, default: 'inline-block'},
-  alignSelf: {type: String, default: 'auto'}
 })
 defineEmits(['click']);
 </script>
