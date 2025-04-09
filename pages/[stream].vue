@@ -13,6 +13,7 @@ const route = useRoute()
 const twitchApi = new TwitchAPI()
 const streamData = ref<Stream>()
 const accessToken = ref<string | null>(null)
+const isLoading = ref(true)
 
 onMounted(async () => {
   const userName = route.params.stream as string
@@ -24,8 +25,10 @@ onMounted(async () => {
       tokenResponse.access_token,
     )
     streamData.value = streams.data.find((stream) => stream.user_name === userName)
+    isLoading.value = false
   } catch (error) {
-    console.error('Error fetching stream data or token:', error)
+    isLoading.value = false
+    throw new FetchError('Error fetching stream data or token:' + error)
   }
 })
 </script>
@@ -44,7 +47,7 @@ onMounted(async () => {
           class="streamer__video"
         />
         <StreamData v-if="streamData" v-bind="streamData" />
-        <h3>About {{ streamData?.user_name }}</h3>
+        <h3 v-if="!isLoading">About {{ streamData?.user_name }}</h3>
         <ChannelData v-if="streamData" v-bind="streamData" />
       </article>
       <TheChat v-if="streamData" v-bind="streamData" />
@@ -59,7 +62,7 @@ onMounted(async () => {
   .streamer {
     @include flex(column, flex-start, flex-start, nowrap, 1.25rem);
     width: 100%;
-    padding: 0 .9375rem 0 .625rem;
+    padding: 0 0.9375rem 0 0.625rem;
     &__video {
       @media screen and (max-width: 100rem) {
         height: 31.25rem;
