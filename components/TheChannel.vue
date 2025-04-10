@@ -22,9 +22,8 @@ const props = defineProps<Stream>()
 </template>
 
 <style lang="scss" scoped>
-
 .channel {
-  @include flex(row, space-between, center);
+  @include flex(row, space-between, center, nowrap, 8px);
   padding: 0.3125rem 0.625rem;
   &:hover {
     background-color: var(--c-graphite);
@@ -70,6 +69,20 @@ const props = defineProps<Stream>()
       font-size: 0.7813rem;
     }
   }
+
+  @media screen and (max-width: 48rem) {
+    &__info,
+    &__live {
+      display: none;
+    }
+    &:hover {
+      background-color: transparent;
+    }
+    &__logo:hover {
+      border: 0.125rem solid var(--c-blue);
+    }
+  }
+
   .aside--collapsed &__info,
   .aside--collapsed &__live {
     display: none;

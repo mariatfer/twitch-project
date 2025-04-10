@@ -13,7 +13,7 @@ async function fetchRecommendedChannels() {
     const accessToken = await getToken()
     const response: ApiResponse<Stream> = await twitchApi.getLiveStreams(
       accessToken.access_token,
-      6,
+      7,
     )
     recommendedChannels.value = response.data
   } catch (error) {
@@ -22,13 +22,28 @@ async function fetchRecommendedChannels() {
 }
 
 const isCollapsed = ref(false)
+const isMovil = ref(false)
 
 function toggleAside() {
   isCollapsed.value = !isCollapsed.value
 }
 
+function handleResize() {
+  if (window.innerWidth <= 768) {
+    isMovil.value = true
+  } else {
+    isMovil.value = false
+  }
+}
+
 onMounted(() => {
+  handleResize()
+  window.addEventListener('resize', handleResize)
   fetchRecommendedChannels()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
 })
 
 const iconButton = {
@@ -38,7 +53,7 @@ const iconButton = {
 </script>
 
 <template>
-  <aside :class="['aside', { 'aside--collapsed': isCollapsed }]">
+  <aside :class="['aside', { 'aside--collapsed': isCollapsed && !isMovil}]">
     <div class="aside__header">
       <h2 v-if="!isCollapsed" class="aside__header--title">Recommended channels</h2>
       <TheButton :style="iconButton" class="aside__header--button" @click="toggleAside"
@@ -57,12 +72,13 @@ const iconButton = {
 
 <style lang="scss" scoped>
 .aside {
-  @include flex(column, flex-start);
+  @include flex(column, flex-start, center, wrap);
   width: 16.25rem;
   min-width: 16.25rem;
   padding-right: 0.625rem;
   &__header {
-    @include flex(row, space-between);
+    @include flex(row, space-between, center, wrap);
+    width: 100%;
     padding: 0.625rem 0.3125rem;
     &--title {
       @include flex(row, center, center, wrap);
@@ -89,7 +105,7 @@ const iconButton = {
     }
 
     &__content {
-      @include flex(row, flex-start, center, wrap, .3125rem);
+      @include flex(row, center, center, nowrap, 0.3125rem);
       width: 100%;
     }
   }
@@ -98,24 +114,21 @@ const iconButton = {
   width: 3.125rem;
   min-width: 3.125rem;
 
-  &__header--title {
-    display: none;
+  & > .aside__header {
+    @include flex(row, flex-end, center, wrap);
+    &--title {
+      display: none;
+    }
+    &--button {
+      transform: rotate(180deg);
+    }
+    @media screen and (max-width: 48rem) {
+      display: none;
+    }
   }
 
   &__content {
     align-items: center;
-  }
-
-  .aside__header {
-    justify-content: center;
-    &--button {
-      transform: rotate(180deg);
-    }
-  }
-  @media screen and (max-width: 48rem) {
-    .aside__header {
-      display: none;
-    }
   }
 }
 </style>

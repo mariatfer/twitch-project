@@ -35,8 +35,8 @@ defineProps<Stream>()
   transition: all 0.2s ease-in-out;
   height: fit-content;
 
-  @media screen and (max-width: 48rem) {
-    flex-basis: 100%;
+  @media screen and (max-width: 31.25rem) {
+    width: 100%;
   }
 }
 
