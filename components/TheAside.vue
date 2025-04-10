@@ -13,7 +13,7 @@ async function fetchRecommendedChannels() {
     const accessToken = await getToken()
     const response: ApiResponse<Stream> = await twitchApi.getLiveStreams(
       accessToken.access_token,
-      7,
+      6,
     )
     recommendedChannels.value = response.data
   } catch (error) {
