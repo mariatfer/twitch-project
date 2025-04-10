@@ -114,7 +114,7 @@ const iconButton = {
   width: 3.125rem;
   min-width: 3.125rem;
 
-  & > .aside__header {
+  .aside__header {
     @include flex(row, flex-end, center, wrap);
     &--title {
       display: none;
