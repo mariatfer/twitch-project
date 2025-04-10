@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import UserIcon from '@/components/icons/UserIcon.vue'
 import NotificationIcon from '@/components/icons/NotificationIcon.vue'
+import MenuIcon from '@/components/icons/MenuIcon.vue'
 import { ref, onMounted } from 'vue'
 import { TwitchAPI } from '@/utils/TwitchAPI'
 
@@ -17,9 +18,9 @@ onMounted(async () => {
 
 function redirectToAuthUrl() {
   if (authUrl.value) {
-    window.location.href = authUrl.value;
+    window.location.href = authUrl.value
   } else {
-    console.error('Authorization URL is not available.');
+    console.error('Authorization URL is not available.')
   }
 }
 
@@ -38,9 +39,8 @@ const iconButton = {
 const notificationButton = {
   background: 'transparent',
   display: 'flex',
-  alignSelf: 'flex-end'
+  alignSelf: 'flex-end',
 }
-
 </script>
 
 <template>
@@ -49,15 +49,21 @@ const notificationButton = {
       <span class="buttons__notification--badge">63</span>
       <TheButton :style="notificationButton"><NotificationIcon /></TheButton>
     </div>
-    <TheButton :style="secundaryButton" class="buttons--translate" @click="redirectToAuthUrl">Log In</TheButton>
+    <TheButton
+      :style="secundaryButton"
+      class="buttons--translate"
+      @click="redirectToAuthUrl"
+      >Log In</TheButton
+    >
     <TheButton :style="primaryButton" class="buttons--translate">Sign Up</TheButton>
     <TheButton :style="iconButton" class="buttons--translate"><UserIcon /></TheButton>
   </section>
+  <TheButton :style="iconButton" class="buttons--translate menu-button"
+    ><MenuIcon
+  /></TheButton>
 </template>
 
 <style lang="scss" scoped>
-
-
 .buttons {
   @include flex(row, space-between, center, wrap, 0.5em);
 
@@ -81,9 +87,20 @@ const notificationButton = {
   }
   &--translate {
     font-weight: 600;
-    &:hover{
-    transform: translateY(-0.1rem);
+    &:hover {
+      transform: translateY(-0.1rem);
+    }
   }
+}
+.menu-button {
+  display: none;
+}
+@media (max-width: 64rem) {
+  .menu-button {
+    display: block;
+  }
+  .buttons {
+    display: none;
   }
 }
 </style>
