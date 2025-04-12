@@ -57,7 +57,8 @@ onMounted(() => {
     padding-left: 1.25rem;
     @media screen and (max-width: 48rem) {
       padding-left: 0;
-      
+      padding-top: 0.5rem;
+      @include flex(column, flex-start, center, nowrap, .5rem);
     }
   }
 }

@@ -22,6 +22,7 @@ async function fetchRecommendedChannels() {
 }
 
 const isCollapsed = ref(false)
+const isMovil = ref(false)
 
 function toggleAside() {
   isCollapsed.value = !isCollapsed.value
@@ -29,9 +30,9 @@ function toggleAside() {
 
 function handleResize() {
   if (window.innerWidth <= 768) {
-    isCollapsed.value = true
+    isMovil.value = true
   } else {
-    isCollapsed.value = false
+    isMovil.value = false
   }
 }
 
@@ -52,7 +53,7 @@ const iconButton = {
 </script>
 
 <template>
-  <aside :class="['aside', { 'aside--collapsed': isCollapsed }]">
+  <aside :class="['aside', { 'aside--collapsed': isCollapsed && !isMovil}]">
     <div class="aside__header">
       <h2 v-if="!isCollapsed" class="aside__header--title">Recommended channels</h2>
       <TheButton :style="iconButton" class="aside__header--button" @click="toggleAside"
@@ -71,12 +72,13 @@ const iconButton = {
 
 <style lang="scss" scoped>
 .aside {
-  @include flex(column, flex-start);
+  @include flex(column, flex-start, center, wrap);
   width: 16.25rem;
   min-width: 16.25rem;
   padding-right: 0.625rem;
   &__header {
-    @include flex(row, space-between);
+    @include flex(row, space-between, center, wrap);
+    width: 100%;
     padding: 0.625rem 0.3125rem;
     &--title {
       @include flex(row, center, center, wrap);
@@ -91,29 +93,42 @@ const iconButton = {
       }
     }
   }
+  @media screen and (max-width: 48rem) {
+    @include flex(row, flex-start, center, nowrap);
+    width: 100%;
+    max-height: 3.125rem;
+    overflow: hidden;
+    padding: 0;
+
+    &__header {
+      display: none;
+    }
+
+    &__content {
+      @include flex(row, center, center, nowrap, 0.3125rem);
+      width: 100%;
+    }
+  }
 }
 .aside--collapsed {
   width: 3.125rem;
   min-width: 3.125rem;
 
-  &__header--title {
-    display: none;
+  .aside__header {
+    @include flex(row, flex-end, center, wrap);
+    &--title {
+      display: none;
+    }
+    &--button {
+      transform: rotate(180deg);
+    }
+    @media screen and (max-width: 48rem) {
+      display: none;
+    }
   }
 
   &__content {
     align-items: center;
-  }
-
-  .aside__header {
-    justify-content: center;
-    &--button {
-      transform: rotate(180deg);
-    }
-  }
-  @media screen and (max-width: 48rem) {
-    .aside__header {
-      display: none;
-    }
   }
 }
 </style>

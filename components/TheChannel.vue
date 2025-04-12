@@ -7,7 +7,7 @@ const props = defineProps<Stream>()
 
 <template>
   <NuxtLink :to="`/${props.user_name}`" class="channel">
-    <img :src="$props.profile_image_url" alt="Channel image" class="channel__logo" >
+    <img :src="$props.profile_image_url" :alt="`${$props.user_name} profile image`" class="channel__logo" >
     <section class="channel__info">
       <h3 class="channel__info--title">{{ $props.user_name }}</h3>
       <p class="channel__info--description">{{ $props.game_name }}</p>
@@ -22,9 +22,8 @@ const props = defineProps<Stream>()
 </template>
 
 <style lang="scss" scoped>
-
 .channel {
-  @include flex(row, space-between, center);
+  @include flex(row, space-between, center, nowrap, 8px);
   padding: 0.3125rem 0.625rem;
   &:hover {
     background-color: var(--c-graphite);
@@ -51,6 +50,10 @@ const props = defineProps<Stream>()
     &--description {
       font-size: 0.8125rem;
       color: var(--c-lightgrey);
+      max-width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
   &__live {
@@ -70,6 +73,20 @@ const props = defineProps<Stream>()
       font-size: 0.7813rem;
     }
   }
+
+  @media screen and (max-width: 48rem) {
+    &__info,
+    &__live {
+      display: none;
+    }
+    &:hover {
+      background-color: transparent;
+    }
+    &__logo:hover {
+      border: 0.125rem solid var(--c-blue);
+    }
+  }
+
   .aside--collapsed &__info,
   .aside--collapsed &__live {
     display: none;

@@ -90,6 +90,7 @@ onMounted(() => {
     overflow: hidden;
     @media screen and (max-width: 62.5rem) {
       grid-template-columns: repeat(auto-fill, minmax(20.3125rem, 23.875rem));
+      justify-content: center;
     }
     &--expanded {
       height: auto;
