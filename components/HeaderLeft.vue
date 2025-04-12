@@ -10,7 +10,7 @@ const iconButton = {
   <section class="home">
     <NuxtLink to="/" class="home__logo">
       <img src="/assets/midutch-logo.svg" alt="Midutch logo" width="28" height="28" >
-      <h1 class="home__logo--title">MIDUTCH</h1>
+      <h1 class="home__logo--title">Vibe Live</h1>
     </NuxtLink>
     <TheButton :style="iconButton" class="home__button--scale"><MoreIcon /></TheButton>
   </section>

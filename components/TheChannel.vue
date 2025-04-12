@@ -7,7 +7,7 @@ const props = defineProps<Stream>()
 
 <template>
   <NuxtLink :to="`/${props.user_name}`" class="channel">
-    <img :src="$props.profile_image_url" alt="Channel image" class="channel__logo" >
+    <img :src="$props.profile_image_url" :alt="`${$props.user_name} profile image`" class="channel__logo" >
     <section class="channel__info">
       <h3 class="channel__info--title">{{ $props.user_name }}</h3>
       <p class="channel__info--description">{{ $props.game_name }}</p>
@@ -50,6 +50,10 @@ const props = defineProps<Stream>()
     &--description {
       font-size: 0.8125rem;
       color: var(--c-lightgrey);
+      max-width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
   &__live {

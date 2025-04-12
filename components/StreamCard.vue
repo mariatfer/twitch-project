@@ -6,9 +6,9 @@ defineProps<Stream>()
 
 <template>
   <NuxtLink :to="`/${$props.user_name}`" class="live-recommendation__card">
-    <img :src="$props.thumbnail_url" alt="Stream thumbnail" class="card__img" >
+    <img :src="$props.thumbnail_url" :alt="`${$props.user_name} thumbnail`" class="card__img" >
     <section class="card__info">
-      <img :src="$props.profile_image_url" alt="Profile image" class="info__img" >
+      <img :src="$props.profile_image_url" :alt="`${$props.user_name} profile image`" class="info__img" >
       <div class="info__content">
         <h3 class="info__content--nowrap">
           {{ $props.title }}
